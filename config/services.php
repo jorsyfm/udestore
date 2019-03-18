@@ -44,4 +44,11 @@ return [
         ],
     ],
 
+    // Socialite (Login con FB)
+    'facebook' => [
+        'client_id' => env('FACEBOOK_CLIENT_ID'), // Configuración en .env
+        'client_secret' => env('FACEBOOK_CLIENT_SECRET'), // Configuración en .env
+        'redirect' => '/login/facebook/callback',
+    ],
+
 ];
