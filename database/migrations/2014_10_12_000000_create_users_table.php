@@ -28,6 +28,8 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('role_id')->default(Role::STUDENT);
             $table->string('name');
+            $table->string('last_name');
+            $table->string('slug');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Course;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -22,7 +23,11 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Goal whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Goal whereUpdatedAt($value)
  */
-class Goal extends Model
-{
-    //
+class Goal extends Model{
+    /**
+     * Get a que curso pertenecen las metas (Relación muchos a 1)
+     */
+    public function course() {
+        return $this->belongsTo(Course::class);
+    }
 }

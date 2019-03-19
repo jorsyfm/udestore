@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\User;
+use App\Course;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -26,7 +28,19 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Teacher whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Teacher whereWebsiteUrl($value)
  */
-class Teacher extends Model
-{
-    //
+class Teacher extends Model {
+
+    /**
+     * Get del usuario al que pertenece el profesor (Relación 1 a 1)
+     */
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get de los cursos que pertenecen a un profesor (Relación 1 a muchos)
+     */
+    public function courses() {
+        return $this->hasMany(Course::class);
+    }
 }

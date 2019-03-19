@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Course;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -22,7 +23,11 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Level whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Level whereUpdatedAt($value)
  */
-class Level extends Model
-{
-    //
+class Level extends Model {
+    /**
+     * Get de a qué curso le pertenece qué nivel (Relación 1 a 1)
+     */
+    public function course() {
+        return $this->hasOne(Course::class);
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Course;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -22,7 +23,11 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Requirement whereRequirement($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Requirement whereUpdatedAt($value)
  */
-class Requirement extends Model
-{
-    //
+class Requirement extends Model {
+    /**
+     * Get de los cursos de cada requisito (Relación muchos a muchos)
+     */
+    public function courses() {
+        return $this->belongsToMany(Course::class);
+    }
 }

@@ -2,6 +2,11 @@
 
 namespace App;
 
+use App\Role;
+use App\Review;
+use App\Student;
+use App\Teacher;
+use App\UserSocialAccount;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -73,4 +78,32 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get del Rol al que pertenece el usuario (relación muchos a 1)
+     */
+    public function role() {
+        return $this->belongsTo(Role::class);
+    }
+
+    /**
+     * Get del maestro que pertenece al usuario (relación 1 a 1)
+     */
+    public function teacher() {
+        return $this->hasOne(Teacher::class);
+    }
+
+    /**
+     * Get del estudiante que pertenece al usuario (relación 1 a 1)
+     */
+    public function student() {
+        return $this->hasOne(Student::class);
+    }
+
+    /**
+     * Get de la red social con la que accedio el usuario (relación 1 a 1)
+     */
+    public function socialAccount() {
+        return $this->hasOne(UserSocialAccount::class);
+    }
 }

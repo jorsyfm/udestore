@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\User;
+use App\Course;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -22,7 +24,18 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Student whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Student whereUserId($value)
  */
-class Student extends Model
-{
-    //
+class Student extends Model {
+    /**
+     * Get de los cursos a los que está inscrito un estudiante (Relación muchos a muchos)
+     */
+    public function courses() {
+        return $this->belongsToMany(Course::class);
+    }
+
+    /**
+     * Get de a qué usuario le pertenece qué estudiante (Relación 1 a 1)
+     */
+    public function user() {
+        return $this->belongsTo(User::class)->select('id','role_id','name','email');
+    }
 }
